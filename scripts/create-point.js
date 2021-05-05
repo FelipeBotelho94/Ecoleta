@@ -58,7 +58,9 @@ for (const item of itemsToCollect) {
     item.addEventListener ("click", handleSelectedItem)
 }
 
-let selectedItems = [1, 2, 3, 4, 5, 6]
+const collectedItems = document.querySelector("input[name=items]")
+
+let selectedItems = []
 
 function handleSelectedItem(event) {
     const itemLi = event.target
@@ -75,15 +77,16 @@ function handleSelectedItem(event) {
 
     if( alreadySelected >= 0) {
         const filteredItems = selectedItems.filter( item => {
-            
+            const itemIsDifferent = item != itemId
+            return itemIsDifferent
         })
+
+        selectedItems = filteredItems
+    } else {
+        selectedItems.push(itemId)
     }
 
-
-
-
-
-
-
+    collectedItems.value = selectedItems
 
 }
+
